@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mt4:
+    build: .
+    container_name: mt4-official
+    network_mode: host
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - mt4-data:/home/trader/.mt4:rw
+    ipc: host
+    stdin_open: true
+    tty: true
+
+volumes:
+  mt4-data:
